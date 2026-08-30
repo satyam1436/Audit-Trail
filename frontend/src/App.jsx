@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import SearchBar from "./components/search/SearchBar";
+import AppHeader from "./components/common/AppHeader";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -7,6 +9,7 @@ function App() {
 
   const handleSearch = (containerId) => {
     console.log("Searching for:", containerId);
+
     setIsLoading(true);
     setError("");
 
@@ -18,16 +21,18 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
-      <div className="w-full max-w-md">
-        <SearchBar onSearch={handleSearch} isLoading={isLoading} error={error} />
-      </div>
-import AppHeader from "./components/common/AppHeader";
-
-function App() {
-  return (
     <div className="min-h-screen bg-slate-950">
       <AppHeader />
+
+      <div className="flex items-center justify-center p-6">
+        <div className="w-full max-w-md">
+          <SearchBar
+            onSearch={handleSearch}
+            isLoading={isLoading}
+            error={error}
+          />
+        </div>
+      </div>
     </div>
   );
 }
