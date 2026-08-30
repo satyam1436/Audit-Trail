@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import eventTestRoutes from "./routes/eventTestRoutes.js";
+import shipmentRoutes from "./routes/shipmentRoutes.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get("/health", (req, res) => {
 
 
 app.use("/api/v1/test", eventTestRoutes);
+app.use("/api/v1/shipments", shipmentRoutes);
 
 export default app;
 
