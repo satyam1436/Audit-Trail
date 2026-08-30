@@ -25,7 +25,6 @@ export const appendTestEvent = async (req, res) => {
     }
 };
 
-
 export const getTestEvents = async (req, res) => {
     try {
         const { aggregateId } = req.params;
@@ -46,5 +45,4 @@ export const getTestEvents = async (req, res) => {
         });
     }
 };
-
 
