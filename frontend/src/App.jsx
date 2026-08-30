@@ -22,6 +22,12 @@ function App() {
       <div className="w-full max-w-md">
         <SearchBar onSearch={handleSearch} isLoading={isLoading} error={error} />
       </div>
+import AppHeader from "./components/common/AppHeader";
+
+function App() {
+  return (
+    <div className="min-h-screen bg-slate-950">
+      <AppHeader />
     </div>
   );
 }
