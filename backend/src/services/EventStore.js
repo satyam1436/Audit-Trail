@@ -26,6 +26,7 @@ class EventStore {
 
         return event;
     }
+    
 
     async getEvents(aggregateId) {
         return Event.find({ aggregateId })
@@ -35,3 +36,5 @@ class EventStore {
 }
 
 export default new EventStore();
+
+
