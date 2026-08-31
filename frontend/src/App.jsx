@@ -1,37 +1,41 @@
 import { useState } from "react";
-
 import SearchBar from "./components/search/SearchBar";
 import AppHeader from "./components/common/AppHeader";
+import { getShipmentById } from "./services/shipmentService";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [shipment, setShipment] = useState(null);
 
-  const handleSearch = (containerId) => {
-    console.log("Searching for:", containerId);
-
+  const handleSearch = async (containerId) => {
     setIsLoading(true);
     setError("");
+    setShipment(null);
 
-    // Simulate API call delay
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const result = await getShipmentById(containerId);
+      setShipment(result);
+    } catch (err) {
       setError("Container not found. Please check the ID and try again.");
-    }, 1500);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-slate-950">
       <AppHeader />
-
-      <div className="flex items-center justify-center p-6">
+      <div className="p-6 flex flex-col items-center">
         <div className="w-full max-w-md">
-          <SearchBar
-            onSearch={handleSearch}
-            isLoading={isLoading}
-            error={error}
-          />
+          <SearchBar onSearch={handleSearch} isLoading={isLoading} error={error} />
         </div>
+
+        {shipment && (
+          <pre className="mt-6 w-full max-w-2xl bg-slate-800 border border-slate-700 rounded-md p-4 text-teal-300 text-xs overflow-auto">
+            {JSON.stringify(shipment, null, 2)}
+          </pre>
+        )}
       </div>
     </div>
   );
