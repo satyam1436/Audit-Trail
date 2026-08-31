@@ -21,6 +21,7 @@ class ContainerAggregate {
             },
         };
     }
+    
 
     apply(event) {
         switch (event.eventType) {
@@ -65,3 +66,4 @@ class ContainerAggregate {
 }
 
 export default ContainerAggregate;
+
