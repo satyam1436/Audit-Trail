@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchBar from "./components/search/SearchBar";
 import AppHeader from "./components/common/AppHeader";
 import ShipmentOverview from "./components/overview/ShipmentOverview";
+import EventTimeline from "./components/timeline/EventTimeline";
 import { getShipmentById } from "./services/shipmentService";
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
     }
   };
 
+  const handleInspectEvent = (event) => {
+    console.log("Inspecting event:", event);
+  };
+
   return (
     <div className="min-h-screen bg-slate-950">
       <AppHeader />
@@ -33,8 +38,13 @@ function App() {
         </div>
 
         {shipment && (
-          <div className="w-full max-w-2xl">
-            <ShipmentOverview shipment={shipment} />
+          <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-[58%_42%] gap-6">
+            <div>
+              <ShipmentOverview shipment={shipment} />
+            </div>
+            <div>
+              <EventTimeline events={shipment.events} onInspectEvent={handleInspectEvent} />
+            </div>
           </div>
         )}
       </div>
