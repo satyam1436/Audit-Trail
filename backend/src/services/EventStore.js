@@ -27,14 +27,12 @@ class EventStore {
         return event;
     }
     
-
     async getEvents(aggregateId) {
         return Event.find({ aggregateId })
             .sort({ version: 1 })
-            .lean();
+            .lean()
     }
 }
 
 export default new EventStore();
-
 
