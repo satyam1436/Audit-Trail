@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchBar from "./components/search/SearchBar";
 import AppHeader from "./components/common/AppHeader";
+import ShipmentOverview from "./components/overview/ShipmentOverview";
 import { getShipmentById } from "./services/shipmentService";
 
 function App() {
@@ -26,15 +27,15 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-950">
       <AppHeader />
-      <div className="p-6 flex flex-col items-center">
+      <div className="p-4 sm:p-6 flex flex-col items-center gap-6">
         <div className="w-full max-w-md">
           <SearchBar onSearch={handleSearch} isLoading={isLoading} error={error} />
         </div>
 
         {shipment && (
-          <pre className="mt-6 w-full max-w-2xl bg-slate-800 border border-slate-700 rounded-md p-4 text-teal-300 text-xs overflow-auto">
-            {JSON.stringify(shipment, null, 2)}
-          </pre>
+          <div className="w-full max-w-2xl">
+            <ShipmentOverview shipment={shipment} />
+          </div>
         )}
       </div>
     </div>
