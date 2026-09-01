@@ -3,12 +3,14 @@ import SearchBar from "./components/search/SearchBar";
 import AppHeader from "./components/common/AppHeader";
 import ShipmentOverview from "./components/overview/ShipmentOverview";
 import EventTimeline from "./components/timeline/EventTimeline";
+import EventInspector from "./components/timeline/EventInspector";
 import { getShipmentById } from "./services/shipmentService";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [shipment, setShipment] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const handleSearch = async (containerId) => {
     setIsLoading(true);
@@ -25,10 +27,6 @@ function App() {
     }
   };
 
-  const handleInspectEvent = (event) => {
-    console.log("Inspecting event:", event);
-  };
-
   return (
     <div className="min-h-screen bg-slate-950">
       <AppHeader />
@@ -43,11 +41,18 @@ function App() {
               <ShipmentOverview shipment={shipment} />
             </div>
             <div>
-              <EventTimeline events={shipment.events} onInspectEvent={handleInspectEvent} />
+              <EventTimeline
+                events={shipment.events}
+                onInspectEvent={setSelectedEvent}
+              />
             </div>
           </div>
         )}
       </div>
+
+      {selectedEvent && (
+        <EventInspector event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+      )}
     </div>
   );
 }
