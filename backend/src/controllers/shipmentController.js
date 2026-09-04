@@ -12,6 +12,7 @@ import ArriveAtPortCommand from "../commands/arriveAtPort.command.js";
 import handleArriveAtPort from "../commands/arriveAtPort.handler.js";
 import getContainerState from "../queries/getContainerState.handler.js";
 
+
 export const createContainer = async (req, res) => {
     try {
         const { containerId, location } = req.body;
@@ -188,3 +189,6 @@ export const getContainer = async (req, res) => {
         });
     }
 };
+
+
+
