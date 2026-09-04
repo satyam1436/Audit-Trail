@@ -8,6 +8,7 @@ const handleLoadContainer = async (command) => {
         throw new Error("containerId and vessel are required");
     }
 
+    
     const existingEvents = await eventStore.getEvents(containerId);
 
     const aggregate = new ContainerAggregate();
@@ -29,3 +30,4 @@ const handleLoadContainer = async (command) => {
 };
 
 export default handleLoadContainer;
+
