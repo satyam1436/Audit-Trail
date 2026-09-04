@@ -1,4 +1,4 @@
-import eventStore from "../services/EventStore.js";
+uimport eventStore from "../services/EventStore.js";
 import ContainerAggregate from "../domain/aggregates/ContainerAggregate.js";
 
 const handleLoadContainer = async (command) => {
@@ -9,6 +9,7 @@ const handleLoadContainer = async (command) => {
     }
 
     
+    
     const existingEvents = await eventStore.getEvents(containerId);
 
     const aggregate = new ContainerAggregate();
@@ -18,6 +19,7 @@ const handleLoadContainer = async (command) => {
     const event = aggregate.loadOnShip({
         vessel,
     });
+    
 
     return eventStore.appendEvent({
         aggregateId: containerId,
@@ -30,4 +32,5 @@ const handleLoadContainer = async (command) => {
 };
 
 export default handleLoadContainer;
+
 
