@@ -4,6 +4,8 @@ import AppHeader from "./components/common/AppHeader";
 import ShipmentOverview from "./components/overview/ShipmentOverview";
 import EventTimeline from "./components/timeline/EventTimeline";
 import EventInspector from "./components/timeline/EventInspector";
+import SkeletonLoader from "./components/common/SkeletonLoader";
+import EmptyState from "./components/common/EmptyState";
 import { getShipmentById } from "./services/shipmentService";
 
 function App() {
@@ -11,11 +13,13 @@ function App() {
   const [error, setError] = useState("");
   const [shipment, setShipment] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSearch = async (containerId) => {
     setIsLoading(true);
     setError("");
     setShipment(null);
+    setHasSearched(true);
 
     try {
       const result = await getShipmentById(containerId);
@@ -35,7 +39,9 @@ function App() {
           <SearchBar onSearch={handleSearch} isLoading={isLoading} error={error} />
         </div>
 
-        {shipment && (
+        {isLoading && <SkeletonLoader />}
+
+        {!isLoading && shipment && (
           <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-[58%_42%] gap-6">
             <div>
               <ShipmentOverview shipment={shipment} />
@@ -48,6 +54,8 @@ function App() {
             </div>
           </div>
         )}
+
+        {!isLoading && !shipment && !hasSearched && <EmptyState />}
       </div>
 
       {selectedEvent && (
