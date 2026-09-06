@@ -124,7 +124,6 @@ class ContainerAggregate {
         };
     }
 
-
     apply(event) {
         switch (event.eventType) {
             case "CONTAINER_CREATED":
@@ -171,4 +170,3 @@ class ContainerAggregate {
 }
 
 export default ContainerAggregate;
-
