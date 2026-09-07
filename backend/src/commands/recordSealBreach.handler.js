@@ -7,6 +7,7 @@ const handleRecordSealBreach = async (command) => {
     if (!containerId || !reason) {
         throw new Error("containerId and reason are required");
     }
+    
 
     const existingEvents = await eventStore.getEvents(containerId);
 
@@ -28,4 +29,7 @@ const handleRecordSealBreach = async (command) => {
     });
 };
 
+
 export default handleRecordSealBreach;
+
+
