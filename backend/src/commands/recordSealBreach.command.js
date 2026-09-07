@@ -5,4 +5,6 @@ class RecordSealBreachCommand {
     }
 }
 
+
 export default RecordSealBreachCommand;
+
