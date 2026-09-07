@@ -29,4 +29,9 @@ const handleRecordTemperatureSpike = async (command) => {
     });
 };
 
+
+
 export default handleRecordTemperatureSpike;
+
+
+
