@@ -1,9 +1,9 @@
-// Provisional contract fixture data for offline development
-// Mirrors the authoritative CQRS read models (per SRS Section 8.2)
+// Offline fixture data for development
+// Field names mirror the authoritative backend response contract (SRS-DEV2-FE-REVISED-2026-V1.0)
 
 export const MOCK_SHIPMENTS = {
   "CONT-8832-B": {
-    shipmentId: "CONT-8832-B",
+    containerId: "CONT-8832-B",
     currentVersion: 4,
     currentStatus: "IN_TRANSIT",
     currentLocation: "North Sea Transit",
@@ -16,6 +16,7 @@ export const MOCK_SHIPMENTS = {
         version: 1,
         eventType: "CONTAINER_CREATED",
         timestamp: "2026-08-24T08:00:00Z",
+        recordedBy: "system:ingest-service",
         payload: { origin: "Hamburg Port", initialTemp: 4.1 },
       },
       {
@@ -23,6 +24,7 @@ export const MOCK_SHIPMENTS = {
         version: 2,
         eventType: "LOADED_ON_SHIP",
         timestamp: "2026-08-24T12:30:00Z",
+        recordedBy: "operator:hamburg-dock-04",
         payload: { vessel: "Nordic Explorer", bay: "B-14" },
       },
       {
@@ -30,6 +32,7 @@ export const MOCK_SHIPMENTS = {
         version: 3,
         eventType: "TEMPERATURE_SPIKE",
         timestamp: "2026-08-24T19:45:00Z",
+        recordedBy: "sensor:thermo-array-12",
         payload: { recordedTemp: 14.8, threshold: 8.0, severity: "CRITICAL" },
       },
       {
@@ -37,13 +40,14 @@ export const MOCK_SHIPMENTS = {
         version: 4,
         eventType: "ARRIVED_AT_PORT",
         timestamp: "2026-08-25T06:00:00Z",
+        recordedBy: "operator:rotterdam-gate-02",
         payload: { destination: "Rotterdam Terminal", inspected: true },
       },
     ],
   },
 
   "CONT-4081-T": {
-    shipmentId: "CONT-4081-T",
+    containerId: "CONT-4081-T",
     currentVersion: 2,
     currentStatus: "ARRIVED",
     currentLocation: "Rotterdam Port, Berth 4",
@@ -56,6 +60,7 @@ export const MOCK_SHIPMENTS = {
         version: 1,
         eventType: "CONTAINER_CREATED",
         timestamp: "2026-08-25T09:00:00Z",
+        recordedBy: "system:ingest-service",
         payload: { origin: "Antwerp Port", initialTemp: 5.0 },
       },
       {
@@ -63,13 +68,14 @@ export const MOCK_SHIPMENTS = {
         version: 2,
         eventType: "ARRIVED_AT_PORT",
         timestamp: "2026-08-26T10:00:00Z",
+        recordedBy: "operator:rotterdam-gate-01",
         payload: { destination: "Rotterdam Port", inspected: true },
       },
     ],
   },
 
   "CONT-1102-S": {
-    shipmentId: "CONT-1102-S",
+    containerId: "CONT-1102-S",
     currentVersion: 3,
     currentStatus: "SEAL_BROKEN",
     currentLocation: "Singapore Port, Yard 7",
@@ -82,6 +88,7 @@ export const MOCK_SHIPMENTS = {
         version: 1,
         eventType: "CONTAINER_CREATED",
         timestamp: "2026-08-26T07:00:00Z",
+        recordedBy: "system:ingest-service",
         payload: { origin: "Shanghai Port", initialTemp: 4.5 },
       },
       {
@@ -89,6 +96,7 @@ export const MOCK_SHIPMENTS = {
         version: 2,
         eventType: "LOADED_ON_SHIP",
         timestamp: "2026-08-26T15:00:00Z",
+        recordedBy: "operator:shanghai-dock-09",
         payload: { vessel: "Pacific Voyager", bay: "C-02" },
       },
       {
@@ -96,12 +104,13 @@ export const MOCK_SHIPMENTS = {
         version: 3,
         eventType: "SEAL_BREACH",
         timestamp: "2026-08-27T14:20:00Z",
+        recordedBy: "sensor:seal-monitor-04",
         payload: { location: "Singapore Port, Yard 7", detectedBy: "Sensor-Array-04" },
       },
     ],
   },
 };
 
-export function findMockShipment(shipmentId) {
-  return MOCK_SHIPMENTS[shipmentId] || null;
+export function findMockShipment(containerId) {
+  return MOCK_SHIPMENTS[containerId] || null;
 }
