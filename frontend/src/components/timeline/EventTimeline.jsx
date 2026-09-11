@@ -1,6 +1,6 @@
 import EventCard from "./EventCard";
 
-function EventTimeline({ events, onInspectEvent }) {
+function EventTimeline({ events, onInspectEvent, highlightedVersion }) {
   if (!events || events.length === 0) {
     return (
       <div className="text-center py-8 text-slate-500 text-sm">
@@ -23,6 +23,7 @@ function EventTimeline({ events, onInspectEvent }) {
             event={event}
             isLast={index === sortedEvents.length - 1}
             onInspect={onInspectEvent}
+            isHighlighted={event.version === highlightedVersion}
           />
         ))}
       </div>

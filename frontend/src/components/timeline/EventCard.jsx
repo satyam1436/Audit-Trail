@@ -41,7 +41,7 @@ function summarizeEvent(event) {
   }
 }
 
-function EventCard({ event, isLast, onInspect }) {
+function EventCard({ event, isLast, onInspect, isHighlighted }) {
   const isCritical = CRITICAL_TYPES.has(event.eventType);
   const Icon = EVENT_ICONS[event.eventType] || Circle;
 
@@ -66,7 +66,11 @@ function EventCard({ event, isLast, onInspect }) {
         type="button"
         onClick={() => onInspect(event)}
         className={`flex-1 text-left bg-slate-800 border rounded-lg p-3.5 hover:border-teal-500/60 transition-colors ${
-          isCritical ? "border-rose-500/40" : "border-slate-700"
+          isHighlighted
+            ? "border-amber-400 ring-2 ring-amber-400/50"
+            : isCritical
+            ? "border-rose-500/40"
+            : "border-slate-700"
         }`}
       >
         <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
