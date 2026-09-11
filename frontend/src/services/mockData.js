@@ -1,5 +1,5 @@
-// Provisional contract fixture data for offline development
-// Mirrors the authoritative CQRS read models (per SRS Section 8.2)
+// Offline fixture data for development
+// Field names mirror the authoritative backend response contract (SRS-DEV2-FE-REVISED-2026-V1.0)
 
 export const MOCK_SHIPMENTS = {
   "CONT-8832-B": {

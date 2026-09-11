@@ -1,19 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { X, Copy, Check } from "lucide-react";
-import { useState } from "react";
 
 function EventInspector({ event, onClose }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+      }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  if (!event) return null;
+  if (!event) {
+    return null;
+  }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(JSON.stringify(event.payload, null, 2));
@@ -22,10 +25,7 @@ function EventInspector({ event, onClose }) {
   };
 
   return (
-    <div
-      className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50" onClick={onClose}>
       <div
         role="dialog"
         aria-modal="true"
@@ -33,22 +33,15 @@ function EventInspector({ event, onClose }) {
         onClick={(e) => e.stopPropagation()}
         className="bg-slate-800 border border-slate-700 rounded-lg w-full max-w-lg max-h-[85vh] overflow-y-auto shadow-xl"
       >
-        {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-slate-700 sticky top-0 bg-slate-800">
           <h2 id="inspector-title" className="text-sm font-semibold text-slate-100">
             Event Inspector
           </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close inspector"
-            className="text-slate-400 hover:text-slate-100"
-          >
+          <button type="button" onClick={onClose} aria-label="Close inspector" className="text-slate-400 hover:text-slate-100">
             <X size={18} />
           </button>
         </div>
 
-        {/* Event metadata */}
         <div className="p-4 space-y-2 border-b border-slate-700 text-sm">
           <div className="flex justify-between">
             <span className="text-slate-400">Event Type</span>
@@ -66,9 +59,14 @@ function EventInspector({ event, onClose }) {
             <span className="text-slate-400">Timestamp</span>
             <span className="font-mono text-slate-100 text-xs">{event.timestamp}</span>
           </div>
+          {event.recordedBy ? (
+            <div className="flex justify-between">
+              <span className="text-slate-400">Recorded By</span>
+              <span className="font-mono text-slate-100 text-xs">{event.recordedBy}</span>
+            </div>
+          ) : null}
         </div>
 
-        {/* JSON payload viewer */}
         <div className="p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide">
