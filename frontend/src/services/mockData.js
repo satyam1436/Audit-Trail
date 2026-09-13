@@ -114,3 +114,39 @@ export const MOCK_SHIPMENTS = {
 export function findMockShipment(containerId) {
   return MOCK_SHIPMENTS[containerId] || null;
 }
+
+// Simulated continuous temperature readings for the telemetry chart.
+// In production this would come from a dedicated sensor-readings endpoint.
+export const MOCK_TEMPERATURE_SERIES = {
+  "CONT-8832-B": [
+    { timestamp: "2026-08-24T08:00:00Z", temperature: 4.1 },
+    { timestamp: "2026-08-24T11:00:00Z", temperature: 4.3 },
+    { timestamp: "2026-08-24T14:00:00Z", temperature: 4.5 },
+    { timestamp: "2026-08-24T17:00:00Z", temperature: 6.2 },
+    { timestamp: "2026-08-24T19:45:00Z", temperature: 14.8 },
+    { timestamp: "2026-08-24T22:00:00Z", temperature: 9.1 },
+    { timestamp: "2026-08-25T01:00:00Z", temperature: 5.6 },
+    { timestamp: "2026-08-25T04:00:00Z", temperature: 4.0 },
+    { timestamp: "2026-08-25T06:00:00Z", temperature: 3.8 },
+  ],
+  "CONT-4081-T": [
+    { timestamp: "2026-08-25T09:00:00Z", temperature: 5.0 },
+    { timestamp: "2026-08-25T15:00:00Z", temperature: 5.1 },
+    { timestamp: "2026-08-25T21:00:00Z", temperature: 4.9 },
+    { timestamp: "2026-08-26T03:00:00Z", temperature: 5.0 },
+    { timestamp: "2026-08-26T10:00:00Z", temperature: 5.2 },
+  ],
+  "CONT-1102-S": [
+    { timestamp: "2026-08-26T07:00:00Z", temperature: 4.5 },
+    { timestamp: "2026-08-26T12:00:00Z", temperature: 4.8 },
+    { timestamp: "2026-08-26T18:00:00Z", temperature: 5.0 },
+    { timestamp: "2026-08-27T06:00:00Z", temperature: 5.3 },
+    { timestamp: "2026-08-27T12:00:00Z", temperature: 6.1 },
+    { timestamp: "2026-08-27T14:20:00Z", temperature: 6.4 },
+    { timestamp: "2026-08-27T16:00:00Z", temperature: 18.4 },
+  ],
+};
+
+export function findMockTemperatureSeries(containerId) {
+  return MOCK_TEMPERATURE_SERIES[containerId] || [];
+}
