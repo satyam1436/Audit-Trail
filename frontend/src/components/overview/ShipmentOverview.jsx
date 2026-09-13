@@ -20,7 +20,7 @@ function ShipmentOverview({ shipment }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(shipment.shipmentId);
+    navigator.clipboard.writeText(shipment.containerId);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -33,7 +33,7 @@ function ShipmentOverview({ shipment }) {
         <KpiCard label="Container ID">
           <div className="flex items-center gap-2">
             <span className="font-mono font-bold text-sm truncate">
-              {shipment.shipmentId}
+              {shipment.containerId}
             </span>
             <button
               type="button"

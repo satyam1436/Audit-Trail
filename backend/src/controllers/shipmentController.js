@@ -13,6 +13,8 @@ import handleArriveAtPort from "../commands/arriveAtPort.handler.js";
 import getContainerState from "../queries/getContainerState.handler.js";
 import getContainerEvents from "../queries/getContainerEvents.handler.js";
 
+
+
 export const createContainer = async (req, res) => {
     try {
         const { containerId, location } = req.body;

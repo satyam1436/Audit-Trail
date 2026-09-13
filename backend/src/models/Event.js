@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const EventSchema = new mongoose.Schema(
     {
         eventId: {
@@ -59,6 +60,7 @@ const EventSchema = new mongoose.Schema(
     }
 );
 
+
 EventSchema.index(
     { aggregateId: 1, version: 1 },
     { unique: true }
@@ -67,3 +69,4 @@ EventSchema.index(
 const Event = mongoose.model("Event", EventSchema);
 
 export default Event;
+

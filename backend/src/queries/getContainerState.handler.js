@@ -11,6 +11,7 @@ const getContainerState = async (containerId) => {
     if (events.length === 0) {
         throw new Error("Container not found");
     }
+    
 
     const aggregate = new ContainerAggregate();
 
@@ -31,3 +32,4 @@ const getContainerState = async (containerId) => {
 };
 
 export default getContainerState;
+

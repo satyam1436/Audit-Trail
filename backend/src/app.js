@@ -19,5 +19,3 @@ app.use("/api/v1/test", eventTestRoutes);
 app.use("/api/v1/shipments", shipmentRoutes);
 
 export default app;
-
-

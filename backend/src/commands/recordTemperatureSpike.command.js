@@ -6,4 +6,7 @@ class RecordTemperatureSpikeCommand {
     }
 }
 
+
 export default RecordTemperatureSpikeCommand;
+
+
