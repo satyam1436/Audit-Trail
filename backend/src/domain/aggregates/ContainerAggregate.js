@@ -3,6 +3,9 @@ class ContainerAggregate {
         this.exists = false;
         this.location = null;
         this.status = null;
+        this.loaded = false;
+        this.customsInspected = false;
+        this.arrived = false;
     }
 
     create({ location }) {
@@ -153,6 +156,7 @@ class ContainerAggregate {
 
             case "ARRIVED_AT_PORT":
                 this.arrived = true;
+                this.location = event.payload.location;
                 this.status = "ARRIVED";
                 break;
 

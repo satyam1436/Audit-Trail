@@ -7,6 +7,7 @@ import {
     recordCustomsInspection,
     arriveAtPort,
     getContainer,
+    getContainerEventsHistory,
 } from "../controllers/shipmentController.js";
 
 
@@ -19,6 +20,7 @@ router.post("/seal-breach", recordSealBreach);
 router.post("/customs-inspection", recordCustomsInspection);
 router.post("/arrive", arriveAtPort);
 router.get("/:id", getContainer);
+router.get("/:id/events", getContainerEventsHistory);
 
 export default router;
 
