@@ -1,7 +1,5 @@
 import eventStore from "../services/EventStore.js";
 
-
-
 export const appendTestEvent = async (req, res) => {
     try {
         const { aggregateId, eventType, payload, metadata } = req.body;
@@ -47,3 +45,5 @@ export const getTestEvents = async (req, res) => {
         });
     }
 };
+
+
