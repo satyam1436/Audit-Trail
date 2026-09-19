@@ -1,4 +1,4 @@
-uimport eventStore from "../services/EventStore.js";
+import eventStore from "../services/EventStore.js";
 import ContainerAggregate from "../domain/aggregates/ContainerAggregate.js";
 
 const handleLoadContainer = async (command) => {
