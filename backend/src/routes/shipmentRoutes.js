@@ -19,8 +19,8 @@ router.post("/temperature", recordTemperatureSpike);
 router.post("/seal-breach", recordSealBreach);
 router.post("/customs-inspection", recordCustomsInspection);
 router.post("/arrive", arriveAtPort);
-router.get("/:id", getContainer);
 router.get("/:id/events", getContainerEventsHistory);
+router.get("/:id", getContainer);
 
 export default router;
 
