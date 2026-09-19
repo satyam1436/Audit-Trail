@@ -12,6 +12,7 @@ import ArriveAtPortCommand from "../commands/arriveAtPort.command.js";
 import handleArriveAtPort from "../commands/arriveAtPort.handler.js";
 import getContainerState from "../queries/getContainerState.handler.js";
 import getContainerEvents from "../queries/getContainerEvents.handler.js";
+import getHistoricalContainerState from "../queries/getHistoricalContainerState.handler.js";
 
 
 
@@ -204,6 +205,27 @@ export const getContainerEventsHistory = async (req, res) => {
         });
     } catch (error) {
         console.error("Get container events error:", error.message);
+
+        res.status(404).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+export const getHistoricalContainer = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { time } = req.query;
+
+        const result = await getHistoricalContainerState(id, time);
+
+        res.status(200).json({
+            success: true,
+            ...result,
+        });
+    } catch (error) {
+        console.error("Get historical container error:", error.message);
 
         res.status(404).json({
             success: false,
