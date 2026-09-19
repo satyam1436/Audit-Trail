@@ -26,11 +26,20 @@ class EventStore {
 
         return event;
     }
-    
+
     async getEvents(aggregateId) {
         return Event.find({ aggregateId })
             .sort({ version: 1 })
             .lean()
+    }
+
+    async getEventsAt(aggregateId, timestamp) {
+        return Event.find({
+            aggregateId,
+            timestamp: { $lte: new Date(timestamp) },
+        })
+            .sort({ version: 1 })
+            .lean();
     }
 }
 
