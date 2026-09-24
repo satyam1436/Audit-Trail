@@ -46,4 +46,3 @@ export const getTestEvents = async (req, res) => {
     }
 };
 
-
