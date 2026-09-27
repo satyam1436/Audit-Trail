@@ -1,6 +1,7 @@
 import eventStore from "../services/EventStore.js";
 import ContainerAggregate from "../domain/aggregates/ContainerAggregate.js";
 
+
 const handleRecordCustomsInspection = async (command) => {
     const { containerId, inspector } = command;
 
