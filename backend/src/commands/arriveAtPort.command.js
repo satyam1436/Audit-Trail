@@ -5,7 +5,6 @@ class ArriveAtPortCommand {
     }
 }
 
-
 export default ArriveAtPortCommand;
 
 
