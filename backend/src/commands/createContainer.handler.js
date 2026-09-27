@@ -1,6 +1,7 @@
 import eventStore from "../services/EventStore.js";
 import ContainerAggregate from "../domain/aggregates/ContainerAggregate.js";
 
+
 const handleCreateContainer = async (command) => {
     const { containerId, location } = command;
 
