@@ -6,6 +6,10 @@ class ContainerAggregate {
         this.loaded = false;
         this.customsInspected = false;
         this.arrived = false;
+
+        // Sensor-related state
+        this.sensorHealth = "NORMAL";
+        this.temperature = null;
     }
 
     create({ location }) {
@@ -142,10 +146,13 @@ class ContainerAggregate {
 
             case "TEMPERATURE_SPIKE":
                 this.status = "TEMPERATURE_ALERT";
+                this.sensorHealth = "ALERT";
+                this.temperature = event.payload.temperature;
                 break;
 
             case "SEAL_BREACH":
                 this.status = "SEAL_BREACH";
+                this.sensorHealth = "ALERT";
                 break;
 
             case "CUSTOMS_INSPECTED":

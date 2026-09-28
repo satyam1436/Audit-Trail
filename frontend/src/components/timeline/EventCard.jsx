@@ -27,15 +27,15 @@ function summarizeEvent(event) {
   const p = event.payload || {};
   switch (event.eventType) {
     case "CONTAINER_CREATED":
-      return `Created at ${p.origin ?? "unknown origin"}.`;
+      return `Created at ${p.location ?? "unknown location"}.`;
     case "LOADED_ON_SHIP":
       return `Loaded onto vessel ${p.vessel ?? "unknown vessel"}${p.bay ? `, bay ${p.bay}` : ""}.`;
     case "ARRIVED_AT_PORT":
-      return `Arrived at ${p.destination ?? "destination"}.`;
+      return `Arrived at ${p.location ?? "unknown location"}.`;
     case "TEMPERATURE_SPIKE":
-      return `Temp reached ${p.recordedTemp}°C (threshold: ${p.threshold}°C).`;
+      return `Temperature reached ${p.temperature}°${p.unit ?? "C"}.`;
     case "SEAL_BREACH":
-      return `Seal breach detected at ${p.location ?? "unknown location"}.`;
+      return `Seal breach detected: ${p.reason ?? "Unknown reason"}.`;
     default:
       return "Event recorded.";
   }
@@ -50,11 +50,10 @@ function EventCard({ event, isLast, onInspect }) {
       {/* Connecting vertical line + node dot */}
       <div className="flex flex-col items-center">
         <div
-          className={`flex items-center justify-center w-8 h-8 rounded-full border-2 shrink-0 ${
-            isCritical
-              ? "bg-rose-500/10 border-rose-500 text-rose-400"
-              : "bg-teal-500/10 border-teal-500 text-teal-400"
-          }`}
+          className={`flex items-center justify-center w-8 h-8 rounded-full border-2 shrink-0 ${isCritical
+            ? "bg-rose-500/10 border-rose-500 text-rose-400"
+            : "bg-teal-500/10 border-teal-500 text-teal-400"
+            }`}
         >
           <Icon size={14} />
         </div>
@@ -65,9 +64,8 @@ function EventCard({ event, isLast, onInspect }) {
       <button
         type="button"
         onClick={() => onInspect(event)}
-        className={`flex-1 text-left bg-slate-800 border rounded-lg p-3.5 hover:border-teal-500/60 transition-colors ${
-          isCritical ? "border-rose-500/40" : "border-slate-700"
-        }`}
+        className={`flex-1 text-left bg-slate-800 border rounded-lg p-3.5 hover:border-teal-500/60 transition-colors ${isCritical ? "border-rose-500/40" : "border-slate-700"
+          }`}
       >
         <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
           <span
