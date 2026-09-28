@@ -64,7 +64,8 @@ function ShipmentOverview({ shipment }) {
           <span
             className={`text-sm font-semibold ${isAlert ? "text-rose-400" : "text-teal-400"}`}
           >
-            {shipment.sensorHealth} ({shipment.temperature}°C)
+            {shipment.sensorHealth}{" "}
+            {shipment.temperature != null && `(${shipment.temperature}°C)`}
           </span>
         </KpiCard>
 

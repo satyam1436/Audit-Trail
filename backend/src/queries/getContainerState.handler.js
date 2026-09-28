@@ -11,7 +11,7 @@ const getContainerState = async (containerId) => {
     if (events.length === 0) {
         throw new Error("Container not found");
     }
-    
+
 
     const aggregate = new ContainerAggregate();
 
@@ -26,8 +26,11 @@ const getContainerState = async (containerId) => {
             loaded: aggregate.loaded,
             customsInspected: aggregate.customsInspected,
             arrived: aggregate.arrived,
+            sensorHealth: aggregate.sensorHealth,
+            temperature: aggregate.temperature,
         },
         version: events[events.length - 1].version,
+        lastModifiedTimestamp: events[events.length - 1].timestamp,
     };
 };
 
