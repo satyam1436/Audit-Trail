@@ -9,6 +9,7 @@ import {
     getContainer,
     getContainerEventsHistory,
     getHistoricalContainer,
+    getContainerTemperatureData,
 } from "../controllers/shipmentController.js";
 
 
@@ -21,6 +22,7 @@ router.post("/seal-breach", recordSealBreach);
 router.post("/customs-inspection", recordCustomsInspection);
 router.post("/arrive", arriveAtPort);
 router.get("/:id/events", getContainerEventsHistory);
+router.get("/:id/telemetry", getContainerTemperatureData);
 router.get("/:id/at", getHistoricalContainer);
 router.get("/:id", getContainer);
 
