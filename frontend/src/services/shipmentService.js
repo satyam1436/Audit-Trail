@@ -2,7 +2,8 @@ import api from "./api";
 import { findMockShipment, findMockTemperatureSeries } from "./mockData";
 
 // Toggle this to false once the backend API is ready for integration
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
+const USE_MOCK_TEMPERATURE_DATA = true;
 const SIMULATED_DELAY_MS = 1200;
 
 function delay(ms) {
@@ -85,11 +86,17 @@ export async function getHistoricalState(containerId, timestamp) {
  * during frontend-only development.
  */
 export async function getShipmentTemperatureSeries(containerId) {
-  if (USE_MOCK_DATA) {
-    await delay(600);
-    return findMockTemperatureSeries(containerId);
+  if (!containerId) {
+    throw new Error("containerId is required");
   }
 
-  const response = await api.get(`/shipments/${containerId}/telemetry`);
-  return response.data;
+  const response = await api.get(
+    `/shipments/${containerId}/telemetry`
+  );
+
+  console.log("Temperature API response:", response.data);
+
+  return Array.isArray(response.data)
+    ? response.data
+    : [];
 }

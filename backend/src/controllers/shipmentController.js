@@ -13,7 +13,7 @@ import handleArriveAtPort from "../commands/arriveAtPort.handler.js";
 import getContainerState from "../queries/getContainerState.handler.js";
 import getContainerEvents from "../queries/getContainerEvents.handler.js";
 import getHistoricalContainerState from "../queries/getHistoricalContainerState.handler.js";
-
+import getContainerTemperature from "../queries/getContainerTemperature.handler.js";
 
 
 export const createContainer = async (req, res) => {
@@ -226,6 +226,23 @@ export const getHistoricalContainer = async (req, res) => {
         });
     } catch (error) {
         console.error("Get historical container error:", error.message);
+
+        res.status(404).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+export const getContainerTemperatureData = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const temperatureSeries = await getContainerTemperature(id);
+
+        res.status(200).json(temperatureSeries);
+    } catch (error) {
+        console.error("Get container temperature error:", error.message);
 
         res.status(404).json({
             success: false,
